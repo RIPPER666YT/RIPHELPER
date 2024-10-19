@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIPHELPER</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: red; /* Red background for the page */
+            color: red; /* Text color changed to red */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full height */
+        }
+
+        #header {
+            background-color: black; /* Black background for the header */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Position relative for header */
+        }
+
+        h1 {
+            color: red; /* Red text color */
+            text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red; /* Glowing effect */
+            animation: glow 1s infinite alternate; /* Glowing animation */
+            margin: 0; /* Remove margins */
+            font-size: 2.5em; /* Responsive font size */
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red; /* Initial glowing state */
+            }
+            100% {
+                text-shadow: 0 0 20px red, 0 0 30px red, 0 0 40px red; /* Final glowing state */
+            }
+        }
+
+        #search-icon {
+            position: absolute; /* Position absolute for icon */
+            right: 20px; /* Align to the right */
+            top: 20px; /* Align to the top */
+            width: 24px; /* Width of the icon */
+            height: 24px; /* Height of the icon */
+            fill: red; /* Color of the icon */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+
+        #commands {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            border-radius: 10px; /* Rounded corners */
+            flex: 1; /* Allow commands to grow */
+            overflow-y: auto; /* Scroll if content is too long */
+        }
+
+        h2 {
+            text-align: center;
+            color: red; /* Title color changed to red */
+            font-size: 2em; /* Responsive font size */
+        }
+
+        ul {
+            list-style-type: none; /* Remove list markers */
+            padding: 0; /* Remove padding */
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid red; /* Divider line changed to red */
+            transition: background-color 0.3s; /* Smooth background transition */
+        }
+
+        li:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Hover effect */
+        }
+
+        .command-description {
+            font-size: 0.9em; /* Smaller font size for descriptions */
+            color: lightcoral; /* Description color changed to light coral */
+        }
+
+        #outputArea {
+            margin: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1); /* Light background for output area */
+            border-radius: 5px; /* Rounded corners */
+            color: white; /* Text color for output */
+            min-height: 50px; /* Minimum height for output area */
+        }
+
+        #footer {
+            background-color: black; /* Black background for the footer */
+            color: red; /* Red text color for footer */
+            text-align: center; /* Center text */
+            padding: 10px 0; /* Vertical padding */
+            position: relative; /* Position relative for footer */
+            bottom: 0; /* Align at bottom */
+            width: 100%; /* Full width */
+        }
+
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em; /* Smaller font size for smaller screens */
+            }
+
+            h2 {
+                font-size: 1.5em; /* Smaller font size for smaller screens */
+            }
+
+            #search-icon {
+                width: 20px; /* Smaller icon for smaller screens */
+                height: 20px; /* Smaller icon for smaller screens */
+            }
+
+            #commands {
+                margin: 10px; /* Smaller margins */
+                padding: 15px; /* Smaller padding */
+            }
+
+            #outputArea {
+                margin: 10px; /* Smaller margins */
+                padding: 10px; /* Smaller padding */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em; /* Even smaller font size for very small screens */
+            }
+
+            h2 {
+                font-size: 1.2em; /* Even smaller font size for very small screens */
+            }
+
+            #search-icon {
+                width: 18px; /* Smaller icon for very small screens */
+                height: 18px; /* Smaller icon for very small screens */
+            }
+
+            #commands {
+                margin: 5px; /* Smaller margins */
+                padding: 10px; /* Smaller padding */
+            }
+
+            #outputArea {
+                margin: 5px; /* Smaller margins */
+                padding: 5px; /* Smaller padding */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>RIPHELPER</h1>
+        <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" onclick="listen()">
+            <path d="M10.5 2a8.5 8.5 0 1 0 6.635 14.186l5.11 5.11a1 1 0 0 0 1.414-1.414l-5.11-5.11A8.5 8.5 0 0 0 10.5 2zm0 2a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13z"/>
+        </svg>
+    </div>
+
+    <div id="commands">
+        <h2>Available Voice Commands</h2>
+        <h3>Entertainment and Communication:</h3>
+        <ul>
+            <li>youtube <span class="command-description">- open YouTube/If you say something after the word "YouTube", then it will be requested in YouTube</span></li>
+            <li>twitch <span class="command-description">- open Twitch/If you say something after the word "Twitch", then it will be requested in Twitch</span></li>
+            <li>steam <span class="command-description">- open Steam</span></li>
+            <li>discord <span class="command-description">- open Discord</span></li>
+            <li>telegram <span class="command-description">- open Telegram</span></li>
+            <li>music <span class="command-description">- open Yandex Music</span></li>
+        </ul>
+        <h3>Information:</h3>
+        <ul>
+            <li>date <span class="command-description">- find out the date</span></li>
+            <li>time <span class="command-description">- find out the time</span></li>
+            <li>weather <span class="command-description">- find out the weather</span></li>
+            <li>translate <span class="command-description">- open translator</span></li>
+        </ul>
+        <h3>Fun Commands:</h3>
+        <ul>
+            <li>hello <span class="command-description">- greeting</span></li>
+            <li>goodbye <span class="command-description">- closure</span></li>
+        </ul>
+        <h3>Search Engines:</h3>
+        <ul>
+            <li>google <span class="command-description">- If you say something after the word "Google", then it will be requested in Google</span></li>
+            <li>yandex <span class="command-description">- If you say something after the word "Yandex", then it will be requested in Yandex</span></li>
+        </ul>
+    </div>
+
+    <div id="outputArea">Output will be displayed here.</div>
+
+    <div id="footer">
+        &copy; RIPPER 2024 </div>
+
+    <script src="script.js"></script> <!-- Подключение вашего скрипта -->
+    <audio id="soundEffect" src="steam.mp3" preload="auto"></audio>
+    <audio id="soundEffect5" src="youtube.mp3" preload="auto"></audio>
+    <audio id="soundEffect6" src="discord.mp3" preload="auto"></audio>
+    <audio id="soundEffect7" src="telegram.mp3" preload="auto"></audio>
+    <audio id="soundEffect8" src="music.mp3" preload="auto"></audio>
+    <audio id="soundEffect9" src="translate.mp3" preload="auto"></audio>
+    <audio id="soundEffect10" src="google.mp3" preload="auto"></audio>
+    <audio id="soundEffect11" src="yandex.mp3" preload="auto"></audio>
+    <audio id="soundEffect12" src="hello.mp3" preload="auto"></audio>
+    <audio id="soundEffect13" src="goodbye.mp3" preload="auto"></audio>
+    <audio id="soundEffect14" src="twitch.mp3" preload="auto"></audio>
+    <audio id="soundEffect15" src="date.mp3" preload="auto"></audio>
+    <audio id="soundEffect16" src="time.mp3" preload="auto"></audio>
+    <audio id="soundEffect2" src="weather.mp3" preload="auto"></audio>
+</body>
+</html>
